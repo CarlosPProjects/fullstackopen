@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 interface ButtonProps {
   text: string;
-  onclick: (e: React.sate) => void;
+  onclick: () => void;
 }
 
 const Button: FC<ButtonProps> = ({ text, onclick }) => {

@@ -1,9 +1,5 @@
 import { FC } from "react";
-
-interface StatisticLineProps {
-  feedback: "good" | "neutral" | "bad";
-  counter: number;
-}
+import { StatisticLineProps } from "../vite-env";
 
 const StatisticLine: FC<StatisticLineProps> = ({ feedback, counter }) => {
   return (
