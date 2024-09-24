@@ -3,7 +3,7 @@ import Button from "./components/Button";
 import Header from "./components/Header";
 import StatisticLine from "./components/StatisticLine";
 import { FeedbackType } from "./vite-env.d";
-import { getTotalComments } from "./utils/utils";
+import { getAverageScore, getTotalComments } from "./utils/utils";
 
 function App() {
   const [goodValue, setGoodValue] = useState(0);
@@ -11,9 +11,11 @@ function App() {
   const [badValue, setBadValue] = useState(0);
 
   const [totalValue, setTotalValue] = useState(0);
+  const [avegare, setAvegare] = useState(0);
 
   useEffect(() => {
     setTotalValue(getTotalComments(goodValue, neutralValue, badValue));
+    setAvegare(getAverageScore(goodValue, neutralValue, badValue));
   }, [goodValue, neutralValue, badValue]);
 
   const handleClick = (type: FeedbackType) => () => {
@@ -47,6 +49,7 @@ function App() {
       </div>
       <div>
         <p>All: {totalValue}</p>
+        <p>Avegare: {avegare}</p>
       </div>
     </main>
   );
