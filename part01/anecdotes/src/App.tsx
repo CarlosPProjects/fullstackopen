@@ -27,7 +27,6 @@ function App() {
       {points[selected] > 0 ? <p>Has {points[selected]} votes</p> : ""}
       <button onClick={handleClick}>Next anecdote</button>
       <button onClick={handleVote}>Vote</button>
-      <button onClick={() => console.log(points)}>show</button>
 
       <h2>Anecdote with most votes</h2>
       {getGreatestValueFromArray(points) > 0 ? (
