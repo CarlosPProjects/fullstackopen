@@ -3,7 +3,11 @@ import Button from "./components/Button";
 import Header from "./components/Header";
 import StatisticLine from "./components/StatisticLine";
 import { FeedbackType } from "./vite-env.d";
-import { getAverageScore, getTotalComments } from "./utils/utils";
+import {
+  getAverageScore,
+  getPositivePercentage,
+  getTotalComments,
+} from "./utils/utils";
 
 function App() {
   const [goodValue, setGoodValue] = useState(0);
@@ -11,11 +15,19 @@ function App() {
   const [badValue, setBadValue] = useState(0);
 
   const [totalValue, setTotalValue] = useState(0);
-  const [avegare, setAvegare] = useState(0);
+  const [average, setAverage] = useState<number>(0);
+  const [positivePercentage, setPositivePercentage] = useState<number>(0);
 
   useEffect(() => {
-    setTotalValue(getTotalComments(goodValue, neutralValue, badValue));
-    setAvegare(getAverageScore(goodValue, neutralValue, badValue));
+    const newTotalValue = getTotalComments(goodValue, neutralValue, badValue);
+    setTotalValue(newTotalValue);
+
+    if (newTotalValue > 0) {
+      setAverage(
+        getAverageScore(goodValue, neutralValue, badValue, newTotalValue)
+      );
+      setPositivePercentage(getPositivePercentage(goodValue, newTotalValue));
+    }
   }, [goodValue, neutralValue, badValue]);
 
   const handleClick = (type: FeedbackType) => () => {
@@ -47,10 +59,15 @@ function App() {
         <StatisticLine feedback={FeedbackType.NEUTRAL} counter={neutralValue} />
         <StatisticLine feedback={FeedbackType.BAD} counter={badValue} />
       </div>
-      <div>
-        <p>All: {totalValue}</p>
-        <p>Avegare: {avegare}</p>
-      </div>
+      {totalValue > 0 ? (
+        <>
+          <p>All: {totalValue}</p>
+          <p>Average: {average}</p>
+          <p>Positive: {positivePercentage}%</p>
+        </>
+      ) : (
+        <p>No feedback given</p>
+      )}
     </main>
   );
 }
