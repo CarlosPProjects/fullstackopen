@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getRandomIndexFromArray } from "./utils/utils";
+import { getIndexFromGreatestValue, getRandomIndexFromArray } from "./utils/utils";
 import anecdotes from "./data/anecdotes";
 
 function App() {
@@ -18,12 +18,16 @@ function App() {
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <br />
       {points[selected] > 0 ? (<p>Has {points[selected]} votes</p>) : ""}
       <button onClick={handleClick}>Next anecdote</button>
       <button onClick={handleVote}>Vote</button>
       <button onClick={() => console.log(points)}>show</button>
+
+      <h2>Anecdote with most votes</h2>
+      {getIndexFromGreatestValue(points)}
     </div>
   );
 }
