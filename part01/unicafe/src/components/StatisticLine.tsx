@@ -1,11 +1,16 @@
 import { FC } from "react";
-import { StatisticLineProps } from "../vite-env";
 
-const StatisticLine: FC<StatisticLineProps> = ({ feedback, counter }) => {
+interface StatisticLineProps {
+  feedback: string;
+  value: number;
+}
+
+const StatisticLine: FC<StatisticLineProps> = ({ feedback, value }) => {
   return (
-    <p>
-      {feedback} : {counter}
-    </p>
+    <>
+      <td> {feedback}</td>
+      {feedback === "positive" ? <td>{value} %</td> : <td>{value}</td>}
+    </>
   );
 };
 

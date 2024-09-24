@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Button from "./components/Button";
 import Header from "./components/Header";
 import StatisticLine from "./components/StatisticLine";
-import { FeedbackType } from "./vite-env.d";
+
 import {
   getAverageScore,
   getPositivePercentage,
@@ -30,7 +30,7 @@ function App() {
     }
   }, [goodValue, neutralValue, badValue]);
 
-  const handleClick = (type: FeedbackType) => () => {
+  const handleClick = (type: string) => () => {
     if (type === "good") {
       setGoodValue(goodValue + 1);
     } else if (type === "neutral") {
@@ -43,27 +43,38 @@ function App() {
   return (
     <main>
       <Header title="Give Feedback" />
-      <Button
-        onclick={handleClick(FeedbackType.GOOD)}
-        text={FeedbackType.GOOD}
-      />
-      <Button
-        onclick={handleClick(FeedbackType.NEUTRAL)}
-        text={FeedbackType.NEUTRAL}
-      />
-      <Button onclick={handleClick(FeedbackType.BAD)} text={FeedbackType.BAD} />
+      <Button onclick={handleClick("good")} text={"good"} />
+      <Button onclick={handleClick("neutral")} text={"neutral"} />
+      <Button onclick={handleClick("bad")} text={"bad"} />
 
       <h2>Statistics</h2>
-      <div>
-        <StatisticLine feedback={FeedbackType.GOOD} counter={goodValue} />
-        <StatisticLine feedback={FeedbackType.NEUTRAL} counter={neutralValue} />
-        <StatisticLine feedback={FeedbackType.BAD} counter={badValue} />
-      </div>
       {totalValue > 0 ? (
         <>
-          <p>All: {totalValue}</p>
-          <p>Average: {average}</p>
-          <p>Positive: {positivePercentage}%</p>
+          <table>
+            <tbody>
+              <tr>
+                <StatisticLine feedback={"good"} value={goodValue} />
+              </tr>
+              <tr>
+                <StatisticLine feedback={"eutral"} value={neutralValue} />
+              </tr>
+              <tr>
+                <StatisticLine feedback={"bad"} value={badValue} />
+              </tr>
+              <tr>
+                <StatisticLine feedback={"total"} value={totalValue} />
+              </tr>
+              <tr>
+                <StatisticLine feedback={"average"} value={average} />
+              </tr>
+              <tr>
+                <StatisticLine
+                  feedback={"positive"}
+                  value={positivePercentage}
+                />
+              </tr>
+            </tbody>
+          </table>
         </>
       ) : (
         <p>No feedback given</p>
