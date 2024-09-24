@@ -25,6 +25,8 @@ function App() {
       <Button onclick={handleClick(FeedbackType.GOOD)} text={FeedbackType.GOOD} />
       <Button onclick={handleClick(FeedbackType.NEUTRAL)} text={FeedbackType.NEUTRAL} />
       <Button onclick={handleClick(FeedbackType.BAD)} text={FeedbackType.BAD} />
+
+      <h2>Statistics</h2>
       <div>
         <StatisticLine feedback={FeedbackType.GOOD} counter={goodValue} />
         <StatisticLine feedback={FeedbackType.NEUTRAL} counter={neutralValue} />
