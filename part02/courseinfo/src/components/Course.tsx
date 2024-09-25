@@ -11,7 +11,7 @@ const Course: FC<CourseProps> = ({ courses }) => {
   return (
     <>
       {courses.map((course) => (
-        <div>
+        <div key={course.id}>
           <Header title={course.name} />
           <Content parts={course.parts} />
           <Total course={course} />
