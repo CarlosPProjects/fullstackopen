@@ -1,9 +1,10 @@
+import Course from "./components/Course"
+import courses from "./data/courses"
+
 function App() {
 
   return (
-    <div>
-      Hello World
-    </div>
+    <Course courses={courses} />
   )
 }
 

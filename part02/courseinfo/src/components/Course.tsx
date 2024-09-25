@@ -1,15 +1,24 @@
-import { FC } from 'react'
+import { FC } from "react";
+import Header from "./Header";
+import Content from "./Content";
+import Total from "./Total";
 
 interface CourseProps {
-  
+  courses: TCourse[];
 }
 
-const Course: FC<CourseProps> = ({  }) => {
+const Course: FC<CourseProps> = ({ courses }) => {
   return (
-    <div>
-     Course
-    </div>
-  )
-}
+    <>
+      {courses.map((course) => (
+        <div>
+          <Header title={course.name} />
+          <Content parts={course.parts} />
+          <Total course={course} />
+        </div>
+      ))}
+    </>
+  );
+};
 
 export default Course;

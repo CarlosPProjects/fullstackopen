@@ -1,14 +1,10 @@
 import { FC } from 'react'
 
-interface PartProps {
-  
-}
-
-const Part: FC<PartProps> = ({  }) => {
+const Part: FC<TPart> = ({ id, name, exercises }) => {
   return (
-    <div>
-     Part
-    </div>
+    <p>
+      {name} : {exercises}
+    </p>
   )
 }
 
