@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { TAgenda } from "./types/types";
 import { getFilteredAgenda, isNameRepeated } from "./lib/utils";
 import Filter from "./components/Filter";
+import Input from "./components/Input";
 
 function App() {
   const [persons, setPersons] = useState<TAgenda[]>([
@@ -75,6 +76,11 @@ function App() {
               value={newNumber}
             />
           </p>
+          <Input
+            name="name"
+            label="name"
+            onChange={(e) => setNewName(e.target.value)}
+          />
         </div>
         <div>
           <button type="submit" onClick={handleSubmit}>

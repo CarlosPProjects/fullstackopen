@@ -1,4 +1,5 @@
 import { FC } from "react";
+import Input from "./Input";
 
 interface FilterProps {
   setNewSearch: React.Dispatch<React.SetStateAction<string>>;
@@ -6,12 +7,11 @@ interface FilterProps {
 
 const Filter: FC<FilterProps> = ({ setNewSearch }) => {
   return (
-    <div>
-      <p>
-        filter shown with:{" "}
-        <input onChange={(e) => setNewSearch(e.target.value)} />
-      </p>
-    </div>
+    <Input
+      name="search"
+      label="Filter"
+      onChange={(e) => setNewSearch(e.target.value)}
+    />
   );
 };
 
