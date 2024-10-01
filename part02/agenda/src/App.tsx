@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { TAgenda } from "./types/types";
-import { isNameRepeated } from "./utils/utils";
+import { getFilteredAgenda, isNameRepeated } from "./lib/utils";
 
 function App() {
   const [persons, setPersons] = useState<TAgenda[]>([
@@ -14,7 +14,14 @@ function App() {
 
   const [newSearch, setNewSearch] = useState("");
 
-  useEffect(() => {}, [newSearch]);
+  useEffect(() => {
+    if (newSearch.trim() === "") {
+      console.log(persons);
+    } else {
+      const filtered = getFilteredAgenda(newSearch, persons);
+      console.log(filtered);
+    }
+  }, [newSearch, persons]);
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
