@@ -1,17 +1,22 @@
 import React, { useState } from "react";
+import { TAgenda } from "./types/types";
+import { isNameRepeated } from "./utils/utils";
 
 function App() {
-  const [persons, setPersons] = useState([{ name: "Arto Hellas" }]);
+  const [persons, setPersons] = useState<TAgenda[]>([{ name: "Arto Hellas" }]);
   const [newName, setNewName] = useState("");
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    const newPersos = {
-      name: newName,
-    };
-
-    setPersons(persons.concat(newPersos));
+    if (isNameRepeated(newName, persons)) {
+      alert(`${newName} exists in agenda`);
+    } else {
+      const newPersos = {
+        name: newName,
+      };
+      setPersons(persons.concat(newPersos));
+    }
   };
 
   return (
