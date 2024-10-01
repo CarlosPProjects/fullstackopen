@@ -14,12 +14,14 @@ function App() {
 
   const [newSearch, setNewSearch] = useState("");
 
+  const [filteredPersons, setFilteredPersons] = useState<TAgenda[]>(persons);
+
   useEffect(() => {
     if (newSearch.trim() === "") {
-      console.log(persons);
+      setFilteredPersons(persons);
     } else {
       const filtered = getFilteredAgenda(newSearch, persons);
-      console.log(filtered);
+      setFilteredPersons(filtered);
     }
   }, [newSearch, persons]);
 
@@ -86,7 +88,7 @@ function App() {
       </form>
       <h2>Numbers</h2>
       <div>
-        {persons.map((e) => (
+        {filteredPersons.map((e) => (
           <div key={e.name}>
             <p>
               {e.name} : {e.number}

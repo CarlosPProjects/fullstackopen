@@ -5,6 +5,8 @@ export const isNameRepeated = (name: string, arr: TAgenda[]) => {
 };
 
 export const getFilteredAgenda = (value: string, arr: TAgenda[]) => {
-  return arr.filter((item) => item.name.includes(value));
+  const lowerCaseValue = value.toLowerCase();
+  return arr.filter((item) => item.name.toLowerCase().includes(lowerCaseValue));
 };
+
 
