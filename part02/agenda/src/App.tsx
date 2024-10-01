@@ -3,6 +3,8 @@ import { TAgenda } from "./types/types";
 import { getFilteredAgenda, isNameRepeated } from "./lib/utils";
 import Filter from "./components/Filter";
 import Input from "./components/Input";
+import PersonForm from "./components/PersonForm";
+import Persons from "./components/Persons";
 
 function App() {
   const [persons, setPersons] = useState<TAgenda[]>([
@@ -39,9 +41,6 @@ function App() {
         id: persons.length + 1,
       };
       setPersons([...persons, newPerson]);
-
-      setNewName("");
-      setNewNumber("");
     }
   };
 
@@ -50,54 +49,13 @@ function App() {
       <h2>Phonebook</h2>
       <Filter setNewSearch={setNewSearch} />
       <h2>Add new</h2>
-      <form>
-        <div>
-          <p>
-            <label htmlFor="name">Name: </label>
-            <input
-              type="text"
-              placeholder="Name"
-              onChange={(e) => setNewName(e.target.value)}
-              required
-              id="name"
-              name="name"
-              value={newName}
-            />
-          </p>
-          <p>
-            <label htmlFor="number">Number: </label>
-            <input
-              type="text"
-              placeholder="Number"
-              onChange={(e) => setNewNumber(e.target.value)}
-              required
-              id="number"
-              name="number"
-              value={newNumber}
-            />
-          </p>
-          <Input
-            name="name"
-            label="name"
-            onChange={(e) => setNewName(e.target.value)}
-          />
-        </div>
-        <div>
-          <button type="submit" onClick={handleSubmit}>
-            add
-          </button>
-        </div>
-      </form>
+      <PersonForm
+        setNewName={setNewName}
+        setNewNumber={setNewNumber}
+        handleSubmit={handleSubmit}
+      />
       <h2>Numbers</h2>
-      <div>
-        {filteredPersons.map((e) => (
-          <div key={e.name}>
-            <p>
-              {e.name} : {e.number}
-            </p>
-          </div>
-        ))}
-      </div>
+      <Persons persons={filteredPersons} />
     </div>
   );
 }
