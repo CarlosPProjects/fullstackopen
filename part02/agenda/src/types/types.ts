@@ -1,3 +1,4 @@
 export interface TAgenda {
-  name: string
+  name: string;
+  number: string;
 }

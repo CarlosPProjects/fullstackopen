@@ -3,8 +3,11 @@ import { TAgenda } from "./types/types";
 import { isNameRepeated } from "./utils/utils";
 
 function App() {
-  const [persons, setPersons] = useState<TAgenda[]>([{ name: "Arto Hellas" }]);
+  const [persons, setPersons] = useState<TAgenda[]>([
+    { name: "Arto Hellas", number: "123123123" },
+  ]);
   const [newName, setNewName] = useState("");
+  const [newNumber, setNewNumber] = useState("");
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -12,10 +15,11 @@ function App() {
     if (isNameRepeated(newName, persons)) {
       alert(`${newName} exists in agenda`);
     } else {
-      const newPersos = {
+      const newPersons = {
         name: newName,
+        number: newNumber,
       };
-      setPersons(persons.concat(newPersos));
+      setPersons(persons.concat(newPersons));
     }
   };
 
@@ -25,13 +29,14 @@ function App() {
       <div>
         {persons.map((e) => (
           <div key={e.name}>
-            <p>{e.name}</p>
+            <p>{e.name} : {e.number}</p>
           </div>
         ))}
       </div>
       <form>
         <div>
-          <input type="text" onChange={(e) => setNewName(e.target.value)} />
+          <input type="text" placeholder="Name" onChange={(e) => setNewName(e.target.value)} />
+          <input type="text" placeholder="Number" onChange={(e) => setNewNumber(e.target.value)} />
         </div>
         <div>
           <button type="submit" onClick={handleSubmit}>
