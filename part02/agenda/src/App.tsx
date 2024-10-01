@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TAgenda } from "./types/types";
 import { getFilteredAgenda, isNameRepeated } from "./lib/utils";
+import Filter from "./components/Filter";
 
 function App() {
   const [persons, setPersons] = useState<TAgenda[]>([
@@ -46,12 +47,7 @@ function App() {
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        <p>
-          filter shown with:{" "}
-          <input onChange={(e) => setNewSearch(e.target.value)} />
-        </p>
-      </div>
+      <Filter setNewSearch={setNewSearch} />
       <h2>Add new</h2>
       <form>
         <div>
