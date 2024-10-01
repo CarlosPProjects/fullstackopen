@@ -13,7 +13,7 @@ function App() {
     e.preventDefault();
 
     if (isNameRepeated(newName, persons)) {
-      alert(`${newName} exists in agenda`);
+      alert(`${newName} is already added to phonebook`);
     } else {
       const newPersons = {
         name: newName,
@@ -28,16 +28,28 @@ function App() {
       <h2>Phonebook</h2>
       <form>
         <div>
-          <input
-            type="text"
-            placeholder="Name"
-            onChange={(e) => setNewName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Number"
-            onChange={(e) => setNewNumber(e.target.value)}
-          />
+          <p>
+            <label htmlFor="name">Name: </label>
+            <input
+              type="text"
+              placeholder="Name"
+              onChange={(e) => setNewName(e.target.value)}
+              required
+              id="name"
+              name="name"
+            />
+          </p>
+          <p>
+            <label htmlFor="number">Number: </label>
+            <input
+              type="text"
+              placeholder="Number"
+              onChange={(e) => setNewNumber(e.target.value)}
+              required
+              id="number"
+              name="number"
+            />
+          </p>
         </div>
         <div>
           <button type="submit" onClick={handleSubmit}>
